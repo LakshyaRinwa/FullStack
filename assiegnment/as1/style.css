@@ -1,0 +1,22 @@
+#div-1{
+    width: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #ffd;
+    border: 5px dashed #f4a460;
+    padding: 1.5em;
+}
+#div-2{
+    width: 25em;
+    margin: 2em 2em 20px 2em;
+    background-color: #dff;
+    border-top: 10px double  darkslategray;
+    border-bottom: 10px double darkslategray;
+    padding: 2em 20px 2em 20px;
+}
+#div-3{
+   margin: 2em 150px 1em 500px ;
+    background-color:burlywood;
+    border: 1em  ridge lightsalmon;
+    padding: 30px;
+}

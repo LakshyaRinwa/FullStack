@@ -1,0 +1,34 @@
+body{
+    width: 90%;
+    max-width: 900px;
+    margin: 2em auto;
+    font: sans-serif;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "header head" "article content" "aside sidecontent" "footer foot";
+    gap: 20px;
+}
+header,footer{
+    background-color: cyan;
+    border-radius: 5px;
+    padding:10px;
+    border: 2px solid rgb(79,185,227);
+}
+article{
+    grid-area: content;
+    background-color: bisque;
+}
+
+aside{
+    grid-area: sidecontent;
+    border-right: 2px solid #e44607;
+    background-color: rgb(204, 235, 242);
+}
+header{
+    grid-area: head;
+}
+footer{
+    grid-area: foot;
+}

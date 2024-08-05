@@ -1,0 +1,79 @@
+//settimeout
+
+// const { get } = require("express/lib/request");
+
+// function demo(msg){
+//     console.log(msg)
+// }
+
+//     console.log("hii")
+//   //  setTimeout(()=>{demo()},0);  //abhi bhi  ye last mein hi chlega
+//   setTimeout(demo,0,"hello lakshya");  
+//   console.log("good-bye")
+
+
+  // use of callback   to maintain the odering of functions
+
+// let post=[
+//     {title: "abc"},
+//     {title: "xyz"}
+// ]
+
+//   function getpost(){
+//     let output='';
+//     setTimeout(()=>{
+// post.forEach((ele) => {
+//     output+=`<li>${ele.title}</li>`
+// });
+// document.body.innerHTML=output;
+//     },1000)
+//   }
+
+//   getpost();
+
+//   function createpost(p,callback){
+//     setTimeout(()=>{
+//         post.push(p);
+//         callback();
+//     },2000)
+
+//   }
+//   createpost({title:"qwe"},getpost);
+
+//  promises
+
+
+let post=[
+    {title: "abc"},
+    {title: "xyz"}
+]
+
+function getpost(){
+    let output='';
+    setTimeout(()=>{
+post.forEach((ele) => {
+    output+=`<li>${ele.title}</li>`
+});
+document.body.innerHTML=output;
+    },1000)
+}
+
+getpost();
+
+function createpost(p){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            post.push(p);
+            let error=false;
+            if(!error){
+                res();
+            }
+            else
+            rej("Error in code")
+        },2000)
+    })
+
+
+}
+
+createpost({title:"qwe"}).then(getpost).catch(err=>console.log(err));

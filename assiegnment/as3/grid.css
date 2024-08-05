@@ -1,0 +1,21 @@
+.container>div{
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(207,212,230);
+    border:2px solid rgb(78,186,227)
+}
+body{
+    width: 90%;
+    max-width: 900px;
+    margin: 2em auto;
+}
+.container{
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: repeat(3,1fr); 
+   /* grid-template-columns: repeat(auto-fit,minmax(100px,1fr));*/
+    /* grid-template-rows: repeat(3,1fr); */
+    gap: 20px;
+    grid-auto-rows:minmax(100px,auto);
+    
+}
