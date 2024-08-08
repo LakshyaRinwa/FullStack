@@ -101,12 +101,25 @@
 //-----------------------------------------------------
 //how to get from api
 
+// const request= new XMLHttpRequest();
+// request.open("GET","https://reqres.in/api/users?page=2");
+// request.addEventListener("load",()=>{
+//     const data=JSON.parse(request.responseText)
+//     console.log(data);
+// });
+
+// request.send();
+
+//------post request----------
+
 const request= new XMLHttpRequest();
-request.open("GET","https://reqres.in/api/users?page=2");
+request.open("POST","https://reqres.in/api/users");
 request.addEventListener("load",()=>{
-    const data=JSON.parse(request.responseText)
-    console.log(data);
+    console.log(request.responseText);
 });
-
-request.send();
-
+const obj={
+    "name":"lakshya",
+    "age":"21"
+}
+request.setRequestHeader("content-type","application/json");
+request.send(JSON.stringify(obj));
