@@ -10,24 +10,30 @@
     <div class="weather-container">
         <h1>Weather App</h1>
         <div class="search-box">
-        <input type="text" id="location-input" placeholder="Enter the location">
-        <button id="search-button"><img src="search.png" alt="Search"></button>
+            <input type="text" id="location-input" placeholder="Enter the location">
+            <button id="search-button"><img src="search.png" alt="Search"></button>
         </div>
         <div class="weather-info">
-        <div class="location">
-        <h2 id="location">Location</h2>
-        </div>
-        <div class="temperature">
-        <span id="temperature">--</span><span>°C</span>
-        </div>
-        <div class="description">
-        <img id="weather-icon" src="" alt="Weather Icon" style="display:none;">
-        <p id="description">Description</p>
-        </div>
-        <div class="additional-info">
-        <p>Humidity: <span id="humidity">--</span>%</p>
-        <p>Wind Speed: <span id="wind-speed">--</span> km/h</p>
-        </div>
+            <div class="current-weather">
+                <div class="location">
+                    <h2 id="location">Location</h2>
+                </div>
+                <div class="temperature">
+                    <span id="temperature">--</span><span>°C</span>
+                </div>
+                <div class="description">
+                    <img id="weather-icon" src="" alt="Weather Icon" style="display:none;">
+                    <p id="description">Description</p>
+                </div>
+                <div class="additional-info">
+                    <p>Humidity: <span id="humidity">--</span>%</p>
+                    <p>Wind Speed: <span id="wind-speed">--</span> km/h</p>
+                </div>
+            </div>
+            <div class="forecast">
+                <h3>3-Day Forecast</h3>
+                <div id="forecast-container"></div>
+            </div>
         </div>
     </div>
     <script src="weather.js"></script>

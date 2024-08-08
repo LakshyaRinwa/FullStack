@@ -43,37 +43,44 @@
 //  promises
 
 
-let post=[
-    {title: "abc"},
-    {title: "xyz"}
-]
+// let post=[
+//     {title: "abc"},
+//     {title: "xyz"}
+// ]
 
-function getpost(){
-    let output='';
-    setTimeout(()=>{
-post.forEach((ele) => {
-    output+=`<li>${ele.title}</li>`
-});
-document.body.innerHTML=output;
-    },1000)
-}
+// function getpost(){
+//     let output='';
+//     setTimeout(()=>{
+// post.forEach((ele) => {
+//     output+=`<li>${ele.title}</li>`
+// });
+// document.body.innerHTML=output;
+//     },1000)
+// }
 
-getpost();
+// getpost();
 
-function createpost(p){
-    return new Promise((res,rej)=>{
-        setTimeout(()=>{
-            post.push(p);
-            let error=false;
-            if(!error){
-                res();
-            }
-            else
-            rej("Error in code")
-        },2000)
-    })
+// function createpost(p){
+//     return new Promise((res,rej)=>{
+//         setTimeout(()=>{
+//             post.push(p);
+//             let error=false;
+//             if(!error){
+//                 res();
+//             }
+//             else
+//             rej("Error in code")
+//         },2000)
+//     })
 
 
-}
+// }
 
-createpost({title:"qwe"}).then(getpost).catch(err=>console.log(err));
+// createpost({title:"qwe"}).then(getpost).catch(err=>console.log(err));
+
+
+
+//-----AJAX------------XHR----xmlhttprequest
+
+
+

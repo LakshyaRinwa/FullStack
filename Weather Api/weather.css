@@ -12,7 +12,7 @@ body {
 }
 
 .weather-container {
-    height: 500px;
+    height: auto; /* Changed from fixed height to auto */
     width: 400px;
     text-align: center;
     background-color: rgb(204, 230, 240);
@@ -34,7 +34,6 @@ body {
 .rainy {
     background-image: url("rainy.jpeg");
 }
-
 
 .search-box {
     display: flex;
@@ -91,4 +90,24 @@ body {
 
 .description p {
     margin-top: 10px;
+}
+
+.forecast {
+    margin-top: 20px;
+}
+
+.forecast h3 {
+    margin-bottom: 10px;
+}
+
+#forecast-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+}
+
+.forecast-day {
+    text-align: center;
+    flex: 1 1 30%; /* Allows flexibility in item width */
+    margin: 10px;
 }
