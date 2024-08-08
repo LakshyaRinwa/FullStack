@@ -89,10 +89,23 @@
 // });
 
 // request.send();
+//-----------------------------------------------------
+// const request= new XMLHttpRequest();
+// request.open("GET","./dataj.json","true");
+// request.addEventListener("load",()=>{
+//     const data=JSON.parse(request.responseText)
+//     console.log(data);
+// });
+
+// request.send();
+//-----------------------------------------------------
+//how to get from api
+
 const request= new XMLHttpRequest();
-request.open("GET","./dataj.json","true");
+request.open("GET","https://reqres.in/api/users?page=2");
 request.addEventListener("load",()=>{
-    console.log(request.responseText);
+    const data=JSON.parse(request.responseText)
+    console.log(data);
 });
 
 request.send();
