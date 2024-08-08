@@ -80,7 +80,20 @@
 
 
 
-//-----AJAX------------XHR----xmlhttprequest
+//-----AJAX------------XHR----xmlhttprequest  by default mode is async
 
+// const request= new XMLHttpRequest();
+// request.open("GET","./data.txt","true");
+// request.addEventListener("load",()=>{
+//     console.log(request.responseText);
+// });
 
+// request.send();
+const request= new XMLHttpRequest();
+request.open("GET","./dataj.json","true");
+request.addEventListener("load",()=>{
+    console.log(request.responseText);
+});
+
+request.send();
 
