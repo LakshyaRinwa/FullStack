@@ -112,14 +112,57 @@
 
 //------post request----------
 
-const request= new XMLHttpRequest();
-request.open("POST","https://reqres.in/api/users");
-request.addEventListener("load",()=>{
-    console.log(request.responseText);
-});
-const obj={
-    "name":"lakshya",
-    "age":"21"
-}
-request.setRequestHeader("content-type","application/json");
-request.send(JSON.stringify(obj));
+// const request= new XMLHttpRequest();
+// request.open("POST","https://reqres.in/api/users");
+// request.addEventListener("load",()=>{
+//     console.log(request.responseText);
+// });
+// const obj={
+//     "name":"lakshya",
+//     "age":"21"
+// }
+// request.setRequestHeader("content-type","application/json");
+// request.send(JSON.stringify(obj));
+
+/*
+task to post a data of a form
+or save in a file
+*/
+  // const request = new XMLHttpRequest();
+  // const form = document.querySelector(".form1");
+
+  // form.addEventListener("submit", (event) => {
+  //     event.preventDefault();
+  //     const name = document.querySelector("#name").value;
+  //     const password = document.querySelector("#pass").value;
+
+  //     const obj = {
+  //         "name": name,
+  //         "password": password
+  //     };
+  //     console.log(obj);
+  //     request.open("POST", "https://reqres.in/api/users");
+  //     request.setRequestHeader("Content-Type", "application/json");
+  //     request.addEventListener("load", () => {
+  //         console.log(request.responseText);
+  //     });
+
+  //     request.send(JSON.stringify(obj));
+  // });
+
+  const formE1=document.querySelector('.form1');
+
+  formE1.addEventListener("submit",(event)=>{
+    event.preventDefault();
+    const formData = new FormData(formE1);
+    console.log(formData.get('name'));
+    const data=new URLSearchParams(formData);
+
+    const req=new XMLHttpRequest();
+    req.open("POST","https://reqres.in/api/users");
+    req.addEventListener("load",()=>{
+      console.log(req.responseText);
+    })
+    req.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    req.send(data);
+  })
