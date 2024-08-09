@@ -150,19 +150,50 @@ or save in a file
   //     request.send(JSON.stringify(obj));
   // });
 
-  const formE1=document.querySelector('.form1');
 
-  formE1.addEventListener("submit",(event)=>{
+
+  // const formE1=document.querySelector('.form1');
+
+  // formE1.addEventListener("submit",(event)=>{
+  //   event.preventDefault();
+  //   const formData = new FormData(formE1);
+  //   console.log(formData.get('name'));
+  //   const data=new URLSearchParams(formData);
+
+  //   // const req=new XMLHttpRequest();
+  //   // req.open("POST","https://reqres.in/api/users");
+  //   // req.addEventListener("load",()=>{
+  //   //   console.log(req.responseText);
+  //   // })
+  //   // req.setRequestHeader("content-type","application/x-www-form-urlencoded");
+  //   // req.send(data);
+
+  //   //creating post request using fetch
+
+  //   // fetch("https://reqres.in/api/users",{
+  //   //   method:"POST",
+  //   //   header:{
+  //   //     "content-type":"application/x-www-form-urlencoded"
+  //   //   },
+  //   //   body:data
+  //   // }).then(res => res.json()).then(result => console.log(result)).catch(err => console.log(err));
+
+
+  // })
+
+//now with async await
+const form=document.querySelector('.form1');
+form.addEventListener("submit",async (event)=>{
     event.preventDefault();
-    const formData = new FormData(formE1);
-    console.log(formData.get('name'));
-    const data=new URLSearchParams(formData);
-
-    const req=new XMLHttpRequest();
-    req.open("POST","https://reqres.in/api/users");
-    req.addEventListener("load",()=>{
-      console.log(req.responseText);
+    const formData=new FormData(form);
+     const data=new URLSearchParams(formData);
+    const res=await fetch('https://reqres.in/api/users',{
+        method:"POST",
+        headers:{
+            "content-type":"application/x-www-form-urlencoded"
+        },
+        body:data
     })
-    req.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    req.send(data);
-  })
+  const result=await res.json();
+  console.log(result);
+})
