@@ -83,23 +83,55 @@
 //                 console.log(date);
 //         }
 // }
+//------------------------------------------------------------------------------------
 //write a function ts to calculate factorial of a number
-function fact(x) {
-    if (x == 0 || x == 1) {
-        return 1;
+// function fact(x:number) : number{
+// if(x==0||x==1){
+// return 1;
+// }
+// return x*fact(x-1);
+// }
+// console.log(fact(5));
+//--------------------------------------------------------------------------------------
+//write a function to convert temp from farenhite to celcius
+// function temp( t : number | string){
+//  if(typeof(t)==='number'){
+//         console.log( (t-32)*(5/9));
+// }
+//  else{
+//         t=parseInt(t);
+//  console.log( (t-32)*(5/9));
+//  }
+// }
+// temp('100');
+// temp(100);
+//------------------------------------------------------------------------------------
+//function addAll any no of arguments can be passed,of type number and it returns the sum of all the arguments
+function sum() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
     }
-    return x * fact(x - 1);
+    var total = 0;
+    for (var i = 0; i < args.length; i++)
+        total += args[i];
+    console.log(total);
 }
-console.log(fact(5));
-//write a function to convert temp from farenhite to calcius
-function temp(t) {
-    if (typeof (t) === 'number') {
-        console.log((t - 32) * (5 / 9));
+sum(1, 2, 3, 4, 5);
+//--------------------------------------------------------------------------------
+//function add or concat two arguments accepted of either number or string paased if number
+// then return sum of these numbers and if any of one is string then concat them
+function sumOfArgs(x, y) {
+    if (typeof (x) === 'number' && typeof (y) === 'number') {
+        var sum_1 = x + y;
+        return sum_1;
     }
     else {
-        t = parseInt(t);
-        console.log((t - 32) * (5 / 9));
+        x = x.toString();
+        y = y.toString();
+        var str = x + y;
+        return str;
     }
 }
-temp('100');
-temp(100);
+console.log(sumOfArgs(2, 3));
+console.log(sumOfArgs("abc", 5));

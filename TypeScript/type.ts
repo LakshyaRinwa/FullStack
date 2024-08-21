@@ -112,6 +112,8 @@
 //         }
 // }
 
+//------------------------------------------------------------------------------------
+
 //write a function ts to calculate factorial of a number
 
 // function fact(x:number) : number{
@@ -123,8 +125,9 @@
 
 // console.log(fact(5));
 
+//--------------------------------------------------------------------------------------
 
-//write a function to convert temp from farenhite to calcius
+//write a function to convert temp from farenhite to celcius
 
 // function temp( t : number | string){
 //  if(typeof(t)==='number'){
@@ -139,3 +142,35 @@
 
 // temp(100);
 
+//------------------------------------------------------------------------------------
+
+//function addAll any no of arguments can be passed,of type number and it returns the sum of all the arguments
+
+function sum(...args:Array<number>){
+    let total=0;
+    for(let i=0;i<args.length;i++)
+        total+=args[i];
+
+    console.log(total)
+}
+sum(1,2,3,4,5);
+
+//--------------------------------------------------------------------------------
+
+//function add or concat two arguments accepted of either number or string paased if number
+// then return sum of these numbers and if any of one is string then concat them
+
+function sumOfArgs(x:number|string,y:number|string):number|string{
+if(typeof(x)==='number' && typeof(y)==='number'){
+    let sum=x+y;
+    return sum;
+}
+else {
+    x=x.toString();
+    y=y.toString();
+    let str=x+y;
+    return str;
+}
+}
+console.log(sumOfArgs(2,3));
+console.log(sumOfArgs("abc",5));
