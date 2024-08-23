@@ -207,10 +207,27 @@
 
 //Nullables
 
-function greet ( msg : string | null | undefined ) : void {
-    console.log(msg);
+// function greet ( msg : string | null | undefined ) : void {
+//     console.log(msg);
+// }
+
+// greet("hello, hii");
+// greet(null);
+// greet(undefined);
+
+//-----------------------------------------------------------------
+
+//optional chaining
+
+type Emp={
+    joiningDate : Date;
 }
 
-greet("hello, hii");
-greet(null);
-greet(undefined);
+function getEmp( id : number) : Emp | null {
+    return id === 0 ? null : {joiningDate : new Date()};
+    
+}
+console.log(getEmp(1)?.joiningDate);
+console.log(getEmp(0)?.joiningDate);
+
+//-----------------------------------------------------------------
