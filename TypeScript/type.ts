@@ -195,10 +195,21 @@
 
 //literals  it means bind a variable to a specific value
 
-let quantity:number = 100;   //if i have to make specific any value
-let q : 100 = 100; //now its value is fixed if we enter other value it will give error
-let q2 : 50 | 100 = 50;
+// let quantity:number = 100;   //if i have to make specific any value
+// let q : 100 = 100; //now its value is fixed if we enter other value it will give error
+// let q2 : 50 | 100 = 50;
 
-type Quenatity = 50 | 100;
+// type Quenatity = 50 | 100;
 
-let q3 : Quenatity = 100;
+// let q3 : Quenatity = 100;
+
+//-----------------------------------------------------------------
+
+//Nullables
+
+function greet ( msg : string ) : void {
+    console.log(msg);
+}
+
+greet("hello, hii");
+greet(null);
