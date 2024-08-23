@@ -160,17 +160,22 @@ sum(1,2,3,4,5);
 //function add or concat two arguments accepted of either number or string paased if number
 // then return sum of these numbers and if any of one is string then concat them
 
-function sumOfArgs(x:number|string,y:number|string):number|string{
-if(typeof(x)==='number' && typeof(y)==='number'){
-    let sum=x+y;
-    return sum;
-}
-else {
-    x=x.toString();
-    y=y.toString();
-    let str=x+y;
-    return str;
-}
-}
-console.log(sumOfArgs(2,3));
-console.log(sumOfArgs("abc",5));
+// function sumOfArgs(x:number|string,y:number|string):number|string{
+// if(typeof(x)==='number' && typeof(y)==='number'){
+//     let sum=x+y;
+//     return sum;
+// }
+// else {
+//     x=x.toString();
+//     y=y.toString();
+//     let str=x+y;
+//     return str;
+// }
+// }
+// console.log(sumOfArgs(2,3));
+// console.log(sumOfArgs("abc",5));
+
+
+//--------------------------------------------------------------------
+
+//function overloading
