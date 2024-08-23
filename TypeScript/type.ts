@@ -207,9 +207,10 @@
 
 //Nullables
 
-function greet ( msg : string ) : void {
+function greet ( msg : string | null | undefined ) : void {
     console.log(msg);
 }
 
 greet("hello, hii");
 greet(null);
+greet(undefined);
