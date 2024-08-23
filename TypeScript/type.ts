@@ -180,14 +180,25 @@
 
 //function overloading
 
-function add(a:number,b:number):number;
+// function add(a:number,b:number):number;
 
-function add(a:string,b:string):string;
+// function add(a:string,b:string):string;
 
-function add(a:any,b:any):any{  //we can use unknown also here
-    return a+b;
-}
+// function add(a:any,b:any):any{  //we can use unknown also here
+//     return a+b;
+// }
 
-console.log(add(34,56));
-console.log(add("Hello","Lakshya"));
+// console.log(add(34,56));
+// console.log(add("Hello ","Lakshya"));
 
+//-----------------------------------------------------------------
+
+//literals  it means bind a variable to a specific value
+
+let quantity:number = 100;   //if i have to make specific any value
+let q : 100 = 100; //now its value is fixed if we enter other value it will give error
+let q2 : 50 | 100 = 50;
+
+type Quenatity = 50 | 100;
+
+let q3 : Quenatity = 100;
