@@ -232,16 +232,39 @@
 
 //optional operator accessing element
 
-let arr : any = [1,2,3,4,5,6];
-arr=null
-console.log(arr?.[0]);
+// let arr : any = [1,2,3,4,5,6];
+// arr=null
+// console.log(arr?.[0]);
 
 //optional operator accessing the call
 
-let greet : any =(msg : string):string =>{
-    return msg;
-}
-console.log(greet?.("hello"));
-console.log(greet?.(null));
+// let greet : any =(msg : string):string =>{
+//     return msg;
+// }
+// console.log(greet?.("hello"));
+// console.log(greet?.(null));
+
 //-----------------------------------------------------------------
 
+//intersection
+
+type Draggable = {
+    drag : ()=> void;
+}
+
+type Resizable ={
+    resize : () => void;
+}
+
+type UIwidget = Draggable & Resizable ;  //  & it is intersection operator
+
+let box : UIwidget ={
+    drag : () => console.log("draggable"),
+    resize : () => console.log("resizable")
+}
+
+console.log(box);
+box.drag();
+box.resize();
+
+//------------------------------------------------
