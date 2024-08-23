@@ -146,14 +146,14 @@
 
 //function addAll any no of arguments can be passed,of type number and it returns the sum of all the arguments
 
-function sum(...args:Array<number>){
-    let total=0;
-    for(let i=0;i<args.length;i++)
-        total+=args[i];
+// function sum(...args:Array<number>){
+//     let total=0;
+//     for(let i=0;i<args.length;i++)
+//         total+=args[i];
 
-    console.log(total)
-}
-sum(1,2,3,4,5);
+//     console.log(total)
+// }
+// sum(1,2,3,4,5);
 
 //--------------------------------------------------------------------------------
 
@@ -179,3 +179,15 @@ sum(1,2,3,4,5);
 //--------------------------------------------------------------------
 
 //function overloading
+
+function add(a:number,b:number):number;
+
+function add(a:string,b:string):string;
+
+function add(a:any,b:any):any{  //we can use unknown also here
+    return a+b;
+}
+
+console.log(add(34,56));
+console.log(add("Hello","Lakshya"));
+
