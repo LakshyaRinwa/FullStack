@@ -220,14 +220,14 @@
 //optional chaining
 
 type Emp={
-    joiningDate : Date;
+    joiningDate ?: Date;
 }
 
 function getEmp( id : number) : Emp | null {
     return id === 0 ? null : {joiningDate : new Date()};
     
 }
-console.log(getEmp(1)?.joiningDate);
+console.log(getEmp(1)?.joiningDate?.getFullYear());
 console.log(getEmp(0)?.joiningDate);
 
 //-----------------------------------------------------------------
