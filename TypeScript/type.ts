@@ -217,17 +217,31 @@
 
 //-----------------------------------------------------------------
 
-//optional chaining
+//optional chaining  optional operator to access property
 
-type Emp={
-    joiningDate ?: Date;
-}
+// type Emp={
+//     joiningDate ?: Date;
+// }
 
-function getEmp( id : number) : Emp | null {
-    return id === 0 ? null : {joiningDate : new Date()};
+// function getEmp( id : number) : Emp | null {
+//     return id === 0 ? null : {joiningDate : new Date()};
     
-}
-console.log(getEmp(1)?.joiningDate?.getFullYear());
-console.log(getEmp(0)?.joiningDate);
+// }
+// console.log(getEmp(1)?.joiningDate?.getFullYear());
+// console.log(getEmp(0)?.joiningDate);
 
+//optional operator accessing element
+
+let arr : any = [1,2,3,4,5,6];
+arr=null
+console.log(arr?.[0]);
+
+//optional operator accessing the call
+
+let greet : any =(msg : string):string =>{
+    return msg;
+}
+console.log(greet?.("hello"));
+console.log(greet?.(null));
 //-----------------------------------------------------------------
+
