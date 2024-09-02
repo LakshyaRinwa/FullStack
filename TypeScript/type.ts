@@ -287,37 +287,53 @@
 //we need to intansihiate 2 var one of car type and one of vehicle 
 // maake arr of vehicle type and acess value of these 
 
-type car = {
-    make:String,
-    model:String
-}
+// type car = {
+//     make:String,
+//     model:String
+// }
 
-interface Bus {
-    make:String,
-    model:String,
-    sittingCapacity:number
-}
-type vehicle = car | Bus;
+// interface Bus {
+//     make:String,
+//     model:String,
+//     sittingCapacity:number
+// }
+// type vehicle = car | Bus;
 
-let c1:car ={
-    make:"car1",
-    model:"2020"
-};
-let v1:Bus ={
-    make:"Bus1",
-    model:"2021",
-    sittingCapacity:20
-};
+// let c1:car ={
+//     make:"car1",
+//     model:"2020"
+// };
+// let v1:Bus ={
+//     make:"Bus1",
+//     model:"2021",
+//     sittingCapacity:20
+// };
 
-let arr:Array<vehicle>=[c1,v1];
-arr.forEach((v)=>{
-    console.log(v.make);
-    console.log(v.model);
-    if ('sittingCapacity' in v) {
-        console.log(v.sittingCapacity);
-    }
-})
+// let arr:Array<vehicle>=[c1,v1];
+// arr.forEach((v)=>{
+//     console.log(v.make);
+//     console.log(v.model);
+//     if ('sittingCapacity' in v) {
+//         console.log(v.sittingCapacity);
+//     }
+// })
 //------------------------------------------------
 
-// 
+// class 
 
+class Point {
+    x: number;
+    y: number;
+
+    constructor(x: number, y: number) {  // Type annotations for parameters
+        this.x = x;
+        this.y = y;
+    }
+
+    draw() {  // Method to draw the point no need to use function keyword
+        console.log(`This is point x: ${this.x}, y: ${this.y}`);
+    }
+}
+
+let obj = new Point(2, 3);  // Create a new instance of Point
+obj.draw();  // Call the draw method
