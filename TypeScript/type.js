@@ -5,11 +5,22 @@
 //     console.log(i);
 // }
 // demo();
-var box = {
-    drag: function () { return console.log("draggable"); },
-    resize: function () { return console.log("resizable"); }
+var c1 = {
+    make: "car1",
+    model: "2020"
 };
-console.log(box);
-box.drag();
-box.resize();
+var v1 = {
+    make: "Bus1",
+    model: "2021",
+    sittingCapacity: 20
+};
+var arr = [c1, v1];
+arr.forEach(function (v) {
+    console.log(v.make);
+    console.log(v.model);
+    if ('sittingCapacity' in v) {
+        console.log(v.sittingCapacity);
+    }
+});
 //------------------------------------------------
+// 

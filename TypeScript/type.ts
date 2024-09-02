@@ -270,11 +270,54 @@
 
 // interfaces
 
-interface Point {
-    x : number ;
-    y : number ;
+// interface Point {
+//     x : number ;
+//     y : number ;
+// }
+
+// function draw(a:Point):void{
+//  console.log(a.x + a.y);
+// }
+
+// draw({x:45,y:45});
+
+// create a type car which have 2 properties make , modle both string type 
+// create interface by name bus it has 3 property make model sitting capacity sttring, number types
+// create type vehicle can be of both
+//we need to intansihiate 2 var one of car type and one of vehicle 
+// maake arr of vehicle type and acess value of these 
+
+type car = {
+    make:String,
+    model:String
 }
 
-function draw(a:Point):void{
- console.log(a.x + a.y);
+interface Bus {
+    make:String,
+    model:String,
+    sittingCapacity:number
 }
+type vehicle = car | Bus;
+
+let c1:car ={
+    make:"car1",
+    model:"2020"
+};
+let v1:Bus ={
+    make:"Bus1",
+    model:"2021",
+    sittingCapacity:20
+};
+
+let arr:Array<vehicle>=[c1,v1];
+arr.forEach((v)=>{
+    console.log(v.make);
+    console.log(v.model);
+    if ('sittingCapacity' in v) {
+        console.log(v.sittingCapacity);
+    }
+})
+//------------------------------------------------
+
+// 
+
