@@ -325,15 +325,15 @@ class Point {
     x: number;
     y: number;
 
-    constructor(x: number, y: number) {  // Type annotations for parameters
+    constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
     }
 
-    draw() {  // Method to draw the point no need to use function keyword
+    draw() {  //  no need to use function keyword
         console.log(`This is point x: ${this.x}, y: ${this.y}`);
     }
 }
 
-let obj = new Point(2, 3);  // Create a new instance of Point
-obj.draw();  // Call the draw method
+let obj = new Point(2, 3);  
+obj.draw(); 
