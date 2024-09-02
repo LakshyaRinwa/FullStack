@@ -14,17 +14,21 @@ cpass.insertAdjacentHTML('beforebegin',`<label for="confirmPassword">confirmPass
 
 // we will use blur eventlistner to do this task
 
-let checkInput = (event)=>{
-    const errorElement=Array.from(event.target.parentNode.querySelectorAll('span'));
-    if(event.target.value=="" && !errorElement.length){
-        event.target.insertAdjacentHTML('afterend',`<span class="text-danger">*Required</span>`)
+let checkInput = (event) => {
+    const errorElement = event.target.parentNode.querySelector('span');
+    
+    if (event.target.value === "" && !errorElement) {
+        const span = document.createElement('span');
+        span.className = 'text-danger';
+        span.textContent = '*Required';
+        event.target.insertAdjacentElement('afterend', span);
     }
-    if(errorElement.length!=0 && event.target.value!=""){
-        errorElement.map((ele)=>{
-         ele.remove();
-        })
+    
+    if (event.target.value !== "" && errorElement) {
+        errorElement.remove();
     }
 }
+
 
 uname.addEventListener('blur',checkInput);
 pass.addEventListener('blur',checkInput);
@@ -59,11 +63,10 @@ let checkform= (event)=>{
     }
 
         // if(uname.value=='' || pass.value=='' || cpass.value==''){
-    //     btn.setAttribute('disabled','');
-    //     alert("form is empty");
+    //     btn.setAttribute('disabled','disabled');
     // }
     // else{
-    //     alert("form is submitted");
+    //     btn.removeAttribute('disabled')
     // }
 
 }

@@ -150,7 +150,6 @@
 //     let total=0;
 //     for(let i=0;i<args.length;i++)
 //         total+=args[i];
-
 //     console.log(total)
 // }
 // sum(1,2,3,4,5);
@@ -248,23 +247,34 @@
 
 //intersection
 
-type Draggable = {
-    drag : ()=> void;
-}
+// type Draggable = {
+//     drag : ()=> void;
+// }
 
-type Resizable ={
-    resize : () => void;
-}
+// type Resizable ={
+//     resize : () => void;
+// }
 
-type UIwidget = Draggable & Resizable ;  //  & it is intersection operator
+// type UIwidget = Draggable & Resizable ;  //  & it is intersection operator
 
-let box : UIwidget ={
-    drag : () => console.log("draggable"),
-    resize : () => console.log("resizable")
-}
+// let box : UIwidget ={
+//     drag : () => console.log("draggable"),
+//     resize : () => console.log("resizable")
+// }
 
-console.log(box);
-box.drag();
-box.resize();
+// console.log(box);
+// box.drag();
+// box.resize();
 
 //------------------------------------------------
+
+// interfaces
+
+interface Point {
+    x : number ;
+    y : number ;
+}
+
+function draw(a:Point):void{
+ console.log(a.x + a.y);
+}

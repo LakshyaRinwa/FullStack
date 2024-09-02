@@ -3,10 +3,8 @@
 
 // a.forEach((value,index,arr)=>{
 //   // " not returned"
-//   /*arr.sort(function(a,b){
-//     return a-b  //sort
-//     return b-a  //reverse 
-//   })*/ 
+//   arr.sort((a,b)=>a-b);
+//   arr.sort((a,b)=>b-a); // reverse
 // })
 
 

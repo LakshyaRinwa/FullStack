@@ -3,7 +3,7 @@ DO NOT ALTER THE EXISTING HTML TO DO THIS.  WRITE ONLY CSS!
 
 /* Give the <body> element a background of #bdc3c7*/
 body {
-	color: #bdc3c7;
+	color: #48a3e0;
 }
 
 /* Make the <h1> element #9b59b6*/
@@ -82,7 +82,7 @@ label {
 }
 
 /*Make the first letter of the element with id 'special' green and 100px font size(font-size: 100)*/
-p + #special::first-letter {
+ #special::first-letter {
 	color: green;
 	font-size: 100px;
 }
