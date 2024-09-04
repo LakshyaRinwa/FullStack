@@ -236,14 +236,17 @@
 //------------------------------------------------
 // class 
 var Point = /** @class */ (function () {
-    function Point(x, y) {
+    function Point(x, y, z) {
+        if (y === void 0) { y = 5; }
+        //we can pass default value in constructor
         this.x = x;
         this.y = y;
+        this.z = z;
     }
     Point.prototype.draw = function () {
         console.log("This is point x: ".concat(this.x, ", y: ").concat(this.y));
     };
     return Point;
 }());
-var obj = new Point(2, 3); // Create a new instance of Point
-obj.draw(); // Call the draw method
+var obj = new Point(2, 3, 4);
+obj.draw();
