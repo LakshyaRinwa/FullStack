@@ -410,6 +410,15 @@
 
     //-----------------------------------------------------------------------
 
-    //constructor passing
+    //constructor passing arguments
 
-    
+    class Stu{
+        constructor(public fname:String){
+           this.fname = fname;
+        }
+        display():void{
+            console.log(this.fname);
+        }
+    }
+    let obj1 = new Stu("lak");
+    obj1.display();
