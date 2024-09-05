@@ -360,17 +360,50 @@
 // obj.setName("lakshya");
 // console.log(obj.getName());
 
-class student{
-    private fname : String = "";
+// class student{
+//     private fname : String = "";
 
-    set Name(n:String){  // it doesnot have return type not even void
-        this.fname=n;
-    }
-    get Name():String{
-        return this.fname;
-    }
-}
+//     set Name(n:String){  // it doesnot have return type not even void
+//         this.fname=n;
+//     }
+//     get Name():String{
+//         return this.fname;
+//     }
+// }
 
-let obj = new student();
-obj.Name=("lakshya");
-console.log(obj.Name);
+// let obj = new student();
+// obj.Name=("lakshya");
+// console.log(obj.Name);
+
+//-------------------------------------------------------
+
+// diff between interface and type
+
+// type Employee={
+// name : String,
+// id : number
+// }
+
+// let emp1 : Employee = {
+//     name : "lakshya",
+//     id : 30
+// }
+
+// we can add new attribute in type dynamically we have to add it in the code manually
+
+interface Employee{
+    name : String,
+    id : number
+    }
+    
+    let emp1 : Employee = {
+        name : "lakshya",
+        id : 30,
+        dept:"cse"
+    }
+
+    //now in this if we add dept we can  it provides us reopening 
+
+    interface Employee{
+        dept:string
+    }
