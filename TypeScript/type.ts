@@ -391,19 +391,25 @@
 
 // we can add new attribute in type dynamically we have to add it in the code manually
 
-interface Employee{
-    name : String,
-    id : number
-    }
+// interface Employee{
+//     name : String,
+//     id : number
+//     }
     
-    let emp1 : Employee = {
-        name : "lakshya",
-        id : 30,
-        dept:"cse"
-    }
+//     let emp1 : Employee = {
+//         name : "lakshya",
+//         id : 30,
+//         dept:"cse"
+//     }
 
     //now in this if we add dept we can  it provides us reopening 
 
-    interface Employee{
-        dept:string
-    }
+    // interface Employee{
+    //     dept:string
+    // }
+
+    //-----------------------------------------------------------------------
+
+    //constructor passing
+
+    
