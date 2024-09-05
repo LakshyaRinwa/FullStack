@@ -235,18 +235,35 @@
 // })
 //------------------------------------------------
 // class 
-var Point = /** @class */ (function () {
-    function Point(x, y, z) {
-        if (y === void 0) { y = 5; }
-        //we can pass default value in constructor
-        this.x = x;
-        this.y = y;
-        this.z = z;
+// class Point {
+//    private x: number;
+//    protected y: number;
+//    public z:number;
+//     constructor(x: number, y: number=5, z : number) {
+//         //we can pass default value in constructor
+//         this.x = x;
+//         this.y = y;
+//         this.z = z;
+//     }
+//     draw() {  //  no need to use function keyword
+//         console.log(`This is point x: ${this.x}, y: ${this.y}`);
+//     }
+// }
+// let obj = new Point(2, 3, 4);  
+// obj.draw(); 
+//-------------------------------------------------------
+var student = /** @class */ (function () {
+    function student() {
+        this.fname = "";
     }
-    Point.prototype.draw = function () {
-        console.log("This is point x: ".concat(this.x, ", y: ").concat(this.y));
+    student.prototype.setName = function (n) {
+        this.fname = n;
     };
-    return Point;
+    student.prototype.getName = function () {
+        return this.fname;
+    };
+    return student;
 }());
-var obj = new Point(2, 3, 4);
-obj.draw();
+var obj = new student();
+obj.setName("lakshya");
+console.log(obj.getName());

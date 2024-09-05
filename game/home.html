@@ -1,0 +1,39 @@
+<!-- guess the world
+3 levels beginer medium expert
+local storage beginer three chances
+medium 2 chances
+hard 1 chance 
+4 digit or 5 digit random number display we can have a file of list of 50 words in which we can randomly choose for display and for matchin also and letter missing min,max function automaticaly
+button play 
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Guess the Word</title>
+     <link rel="stylesheet" href="home.css">
+ </head>
+ <body>
+     <h1>Guess the word</h1>
+     <div id="container">
+         <ol>
+             <li>
+                 <input type="radio" name="level" id="beginer" value="beginer">
+                 <label for="beginer">Beginer</label>
+             </li>
+             <li>
+                 <input type="radio" name="level" id="medium" value="medium">
+                 <label for="medium">Med</label>
+             </li>
+             <li>
+                 <input type="radio" name="level" id="expert" value="expert">
+                 <label for="expert">Expert</label>
+             </li>
+         </ol>
+         <button type="submit">Play</button>
+     </div>
+     <script src="home.js"></script>
+ </body>
+ </html>
+ 

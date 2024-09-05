@@ -321,22 +321,56 @@
 
 // class 
 
-class Point {
-   private x: number;
-   protected y: number;
-   public z:number;
+// class Point {
+//    private x: number;
+//    protected y: number;
+//    public z:number;
 
-    constructor(x: number, y: number=5, z : number) {
-        //we can pass default value in constructor
-        this.x = x;
-        this.y = y;
-        this.z = z;
+//     constructor(x: number, y: number=5, z : number) {
+//         //we can pass default value in constructor
+//         this.x = x;
+//         this.y = y;
+//         this.z = z;
+//     }
+
+//     draw() {  //  no need to use function keyword
+//         console.log(`This is point x: ${this.x}, y: ${this.y}`);
+//     }
+// }
+
+// let obj = new Point(2, 3, 4);  
+// obj.draw(); 
+
+//-------------------------------------------------------
+
+//getter setter functions
+
+// class student{
+//     private fname : String = "";
+
+//     setName(n:String):void{
+//         this.fname=n;
+//     }
+//     getName():String{
+//         return this.fname;
+//     }
+// }
+
+// let obj = new student();
+// obj.setName("lakshya");
+// console.log(obj.getName());
+
+class student{
+    private fname : String = "";
+
+    set Name(n:String){  // it doesnot have return type not even void
+        this.fname=n;
     }
-
-    draw() {  //  no need to use function keyword
-        console.log(`This is point x: ${this.x}, y: ${this.y}`);
+    get Name():String{
+        return this.fname;
     }
 }
 
-let obj = new Point(2, 3, 4);  
-obj.draw(); 
+let obj = new student();
+obj.Name=("lakshya");
+console.log(obj.Name);
