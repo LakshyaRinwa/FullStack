@@ -34,6 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var chances = 0;
+var currentWord = "";
+var maskedWord = "";
+// Fetches the words from the JSON file
 function wordsData() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -44,6 +48,9 @@ function wordsData() {
                     return [4 /*yield*/, fetch("./words.json")];
                 case 1:
                     response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("HTTP error! Status: ".concat(response.status));
+                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
@@ -57,23 +64,143 @@ function wordsData() {
         });
     });
 }
+// Selects a random word from the fetched word list
 function getRandomWord(words) {
+    if (words.length === 0)
+        return "No words available";
     var randomIndex = Math.floor(Math.random() * words.length);
     return words[randomIndex];
 }
-wordsData().then(function (words) {
-    if (words.length > 0) {
-        var randomWord = getRandomWord(words);
-        console.log("Randomly chosen word:", randomWord);
-        var container = document.getElementById('container');
-        if (container) {
-            container.textContent = randomWord;
+// Replaces random letters in the word with blanks
+function maskWord(word) {
+    var letters = word.split('');
+    var blanksCount = 0;
+    var numBlanks = Math.floor(Math.random() * (letters.length / 2)) + 1; // Randomly blank out 1 to half of the letters
+    for (var i = 0; i < numBlanks; i++) {
+        var randomIndex = Math.floor(Math.random() * letters.length);
+        if (letters[randomIndex] !== '_') {
+            letters[randomIndex] = '_';
+            blanksCount++;
         }
-        else {
-            console.error("Container div not found.");
+    }
+    return { maskedWord: letters.join(' '), blanksCount: blanksCount };
+}
+// Displays an on-screen keyboard with clickable lowercase letters
+function displayKeyboard() {
+    var keyboard = document.getElementById('keyboard');
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz'; // lowercase alphabet
+    if (keyboard) {
+        alphabet.split('').forEach(function (letter) {
+            var button = document.createElement('button');
+            button.textContent = letter; // Lowercase letters
+            button.addEventListener('click', function () {
+                // Handle letter click
+                handleLetterClick(letter);
+            });
+            keyboard.appendChild(button);
+        });
+    }
+}
+// Displays the current masked word
+function displayMaskedWord() {
+    var container = document.getElementById('container');
+    if (container) {
+        container.textContent = maskedWord;
+    }
+    else {
+        console.error("Container div not found.");
+    }
+}
+// Handles letter click and updates the game state
+function handleLetterClick(letter) {
+    var isCorrect = false;
+    // Replace the blanks with the correct letter
+    var wordArray = currentWord.split('');
+    var maskedArray = maskedWord.split(' ');
+    for (var i = 0; i < wordArray.length; i++) {
+        if (wordArray[i].toLowerCase() === letter) { // Compare against lowercase letters
+            maskedArray[i] = letter;
+            isCorrect = true;
+        }
+    }
+    maskedWord = maskedArray.join(' ');
+    displayMaskedWord();
+    if (!isCorrect) {
+        decreaseChances();
+    }
+    else if (maskedWord.indexOf('_') === -1) {
+        // Store the result in localStorage and redirect to result.html
+        localStorage.setItem('gameResult', 'won');
+        localStorage.setItem('word', currentWord);
+        window.location.href = 'result.html';
+    }
+}
+// Decreases the chances left and checks for a loss
+function decreaseChances() {
+    if (chances > 0) {
+        chances--;
+        var chancesElement = document.getElementById('chancesLeft');
+        if (chancesElement) {
+            chancesElement.textContent = chances.toString();
+        }
+        if (chances === 0) {
+            // Store the result in localStorage and redirect to result.html
+            localStorage.setItem('gameResult', 'lost');
+            localStorage.setItem('word', currentWord);
+            window.location.href = 'result.html';
         }
     }
     else {
-        console.log("No words available.");
+        alert("You lose! The correct word was \"".concat(currentWord, "\"."));
     }
+}
+// Sets up the game when the document is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    // Display the level chosen by the player
+    var levelName = localStorage.getItem("level");
+    console.log("Level Name:", levelName); // Log the level name for debugging
+    if (levelName) {
+        var levelHeading = document.getElementById('levelName');
+        if (levelHeading) {
+            levelHeading.textContent = "Welcome to the ".concat(levelName, " level!");
+        }
+    }
+    else {
+        console.error("No level found in localStorage.");
+    }
+    // Fetch and display a random masked word
+    wordsData().then(function (words) {
+        if (words.length > 0) {
+            currentWord = getRandomWord(words);
+            var _a = maskWord(currentWord), initialMaskedWord = _a.maskedWord, blanksCount = _a.blanksCount;
+            maskedWord = initialMaskedWord;
+            console.log("Masked word:", maskedWord);
+            console.log("Blanks Count:", blanksCount); // Log the number of blanks for debugging
+            displayMaskedWord();
+            // Set initial chances based on the number of blanks and the level
+            switch (levelName) {
+                case 'Beginner':
+                    chances = 3 * blanksCount;
+                    break;
+                case 'Medium':
+                    chances = 2 * blanksCount;
+                    break;
+                case 'Expert':
+                    chances = blanksCount;
+                    break;
+                default:
+                    chances = 0; // Default case if no level or unknown level
+                    console.error("Unknown level:", levelName);
+            }
+            console.log("Initial Chances:", chances); // Log the initial chances for debugging
+            var chancesElement = document.getElementById('chancesLeft');
+            if (chancesElement) {
+                chancesElement.textContent = chances.toString();
+            }
+            displayKeyboard();
+        }
+        else {
+            console.log("No words available.");
+        }
+    });
 });

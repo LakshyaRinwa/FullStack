@@ -17,17 +17,18 @@
 //     emit
 // }
 
-const EventEmitter = require("events");
+// const EventEmitter = require("events");
 
-class Logger extends EventEmitter{
+// class Logger extends EventEmitter{
 
-    log(){
-        console.log("Event Emiited");
-        this.emit("log" , {id: 5030, username:"lakshya"});
-    }
+//     log(){
+//         console.log("Event Emiited");
+//         this.emit("log" , {id: 5030, username:"lakshya"});
+//     }
 
-}
+// }
 
-const logger = new Logger();
+// const logger = new Logger();
 
-module.exports = {logger};
+// module.exports = {logger};
+
