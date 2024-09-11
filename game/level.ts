@@ -22,7 +22,7 @@ async function wordsData(): Promise<WordsArray> {
 function getRandomWord(words: WordsArray): string {
     if (words.length === 0) return "No words available";
     const randomIndex = Math.floor(Math.random() * words.length);
-    return words[randomIndex];
+    return words[randomIndex]; 
 }
 
 // Replaces random letters in the word with blanks
