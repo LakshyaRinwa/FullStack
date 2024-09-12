@@ -1,22 +1,60 @@
-const http = require("http"); // it will return us object or a class etc , here we let object returned
-
-const server = http.createServer((req,res)=>{
-
-    res.setHeader("Content-Type" , "text/plain");
-
     //res.setHeader("Content-Type" , "text/html");
     // res.setHeader("Content-Type" , "Image/jpeg");
-    
-    console.log("New Connection");
-    res.write("Welcome to Lakshya Server");
-    
     // for send json data
     /*
     res.setHeader("Content-Type" , "application/json");
     res.write(JSON.stringify("this is json data"))
     */
-    
-    res.end();
+
+const http = require("http"); // it will return us object or a class etc , here we let object returned
+const fs = require("fs");
+const server = http.createServer((req,res)=>{
+    let path = req.url;
+    res.setHeader("Content-Type" , "text/html");
+    switch(path){
+            case "/" : 
+            console.log("New Connection");
+            res.write("Welcome to Lakshya Server");
+            res.end();
+            break;
+            case "/index" :
+            fs.readFile("./index.html","utf-8", (err,data)=>{
+                 res.end(data);
+            });
+            break;
+            case "/about" :
+            fs.readFile("./about.html","utf-8", (err,data)=>{
+                 res.end(data);
+            });
+            break;
+            case "/contact" :
+            fs.readFile("./contact.html","utf-8", (err,data)=>{
+                 res.end(data);
+            });
+            break;
+            case "/styles.css" :
+                res.setHeader("Content-Type" , "text/css");
+                fs.readFile("./styles.css","utf-8", (err,data)=>{
+                    res.end(data);
+                });
+                break;
+            case "/index.js" :
+                res.setHeader("Content-Type", "text/javascript");
+                fs.readFile("./index.js","utf-8", (err,data)=>{
+                    res.end(data);
+                });
+            break;
+            case "/photo.jpg" :
+                res.setHeader("Content-Type", "Image/jpg");
+                fs.readFile("./photo.jpg", (err,data)=>{
+                    res.end(data);
+                });
+            break;
+            default:
+            res.statusCode = 404;
+            res.end("404 Not Found");
+            break;
+    }
     
 });
 
