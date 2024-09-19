@@ -1,0 +1,27 @@
+[
+    {
+        "eid" : 1,
+        "ename" : "lakshya",
+        "department" : "cse"
+    },
+    {
+        "eid" : 2,
+        "ename" : "anshita",
+        "department" : "cse"
+    },
+    {
+        "eid" : 3,
+        "ename" : "arpit",
+        "department" : "cse"
+    },
+    {
+        "eid" : 4,
+        "ename" : "anshul",
+        "department" : "cse"
+    },
+    {
+        "eid" : 5,
+        "ename" : "abhinav",
+        "department" : "cse"
+    }
+]
