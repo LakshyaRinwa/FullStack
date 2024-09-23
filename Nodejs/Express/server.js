@@ -11,7 +11,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.urlencoded({extended:false}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static( 'public'));
+app.use(express.json())
 
 app.get("/", (req, res) => {
     console.log("New Connection");
@@ -22,7 +23,7 @@ app.get("/index", (req, res) => {
     console.log(req.url);
     console.log(req.body);
     console.log(req.query);
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(__dirname+'/public/index.html');
 });
 
 app.get("/about", (req, res) => {
@@ -43,6 +44,8 @@ app.get("/login", (req, res) => {
 // })
 
 app.post("/getdata",(req,res)=>{
+    console.log(req.url);
+
     console.log(req.body);
     res.send(`${req.body.username}`)
 })

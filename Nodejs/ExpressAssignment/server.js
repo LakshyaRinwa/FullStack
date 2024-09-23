@@ -25,19 +25,39 @@ app.get("/getForm", (req, res) => {
 // Fetch employee details by ID
 app.post("/getDetails", (req, res) => {
     const empId = req.body.val;
-
+    console.log(empId)
     fs.readFile("./EmpDetails.json", "utf-8", (err, data) => {
         if (err) {
-            res.status(500).send("Error reading file");
-        } else {
-            const employeeData = JSON.parse(data);
-            const emp = employeeData.find(v => v.eid == empId);
+            return res.status(500).send("Error reading file");
+        }
 
-            if (emp) {
-                res.json(emp);
-            } else {
-                res.status(404).send("Employee not found");
-            }
+        let employeeData = JSON.parse(data);
+        let emp = employeeData.find(v => v.eid == empId);
+
+        if (emp) {
+            res.json(emp);
+        } else {
+            // Create default employee data if not found
+            const defaultEmp = {
+                eid: empId,
+                name: "Default Name",
+                department: "Unknown",
+                position: "Unknown",
+                salary: 0
+            };
+
+            // Append the default employee data
+            employeeData.push(defaultEmp);
+
+            // Write updated employee data back to the file
+            fs.writeFile("./EmpDetails.json", JSON.stringify(employeeData), (err) => {
+                if (err) {
+                    return res.status(500).send("Error writing to file");
+                }
+
+                // Return the default employee data in the response
+                res.json(defaultEmp);
+            });
         }
     });
 });
@@ -45,7 +65,7 @@ app.post("/getDetails", (req, res) => {
 // Add new employee
 app.post("/addEmp", (req, res) => {
     const newEmp = req.body;
-
+console.log(newEmp)
     fs.readFile("./EmpDetails.json", "utf-8", (err, data) => {
         if (err) {
             return res.status(500).send("Error reading file");
@@ -57,7 +77,7 @@ app.post("/addEmp", (req, res) => {
         employeeData.push(newEmp);
 
         // Write updated employee data back to the file
-        fs.writeFile("./EmpDetails.json", JSON.stringify(employeeData, null, 2), (err) => {
+        fs.writeFile("./EmpDetails.json", JSON.stringify(employeeData), (err) => {
             if (err) {
                 return res.status(500).send("Error writing to file");
             }
@@ -65,6 +85,9 @@ app.post("/addEmp", (req, res) => {
         });
     });
 });
+
+// Serve a default favicon to prevent 404 error
+app.get("/favicon.ico", (req, res) => res.status(204).end());
 
 // Start the server
 app.listen(3001, () => {

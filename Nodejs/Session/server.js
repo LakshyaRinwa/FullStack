@@ -7,7 +7,7 @@ let oneday = 1000*60*60*24;
 let app = express();
 
 app.use(express.urlencoded({extended:false}))
-app.use(express.static("public"));
+app.use(express.static("public")); 
 
 app.use(cookies());
 app.use(session(

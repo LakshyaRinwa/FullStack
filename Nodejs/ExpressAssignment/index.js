@@ -5,27 +5,36 @@ let formContainer = document.querySelector("#formContainer");
 async function data() {
     let id = document.getElementById("eid").value;
     try {
-        let res = await fetch("http://localhost:3001/getDetails", { 
+        let res = await fetch("http://localhost:3001/getDetails", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ val: id })
         });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
         let data = await res.json();
         console.log(data);
 
         let h1 = document.createElement("h1");
-        h1.innerText = `Employee Name: ${data.ename}, ID: ${data.eid}, Department: ${data.department}`;
+        h1.innerText = `Employee Name: ${data.name}, ID: ${data.eid}, Department: ${data.department}`;
         document.querySelector("body").append(h1);
     } catch (err) {
-        console.log(err);
+        console.log("Error fetching employee details:", err);
     }
 }
 
 async function getForm() {
     try {
         let res = await fetch("http://localhost:3001/getForm", { method: "GET" });
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
         let formHTML = await res.text();
         formContainer.innerHTML = formHTML;
 
@@ -35,7 +44,7 @@ async function getForm() {
             addEmployee();
         });
     } catch (err) {
-        console.log(err);
+        console.log("Error loading form:", err);
     }
 }
 
@@ -52,11 +61,16 @@ async function addEmployee() {
             },
             body: JSON.stringify({ eid, ename, department })
         });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
         let result = await res.json();
         console.log(result);
         alert("Employee added successfully!");
     } catch (err) {
-        console.log(err);
+        console.log("Error adding employee:", err);
     }
 }
 
