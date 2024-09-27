@@ -1,0 +1,7 @@
+[
+    {"id":"f1", "src":"delhi", "desti": "mumbai"},
+    {"id":"f2", "src":"delhi", "desti": "chandigarh"},
+    {"id":"f3", "src":"delhi", "desti": "banglore"},
+    {"id":"f4", "src":"chandigarh", "desti": "bathinda"},
+    {"id":"f5", "src":"delhi", "desti": "goa"}
+]

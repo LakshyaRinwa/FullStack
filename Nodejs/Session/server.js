@@ -19,19 +19,25 @@ app.use(session(
 }
 ))
 
-app.get("/dashboard", (req,res)=>{
+//custumised midlleware
+function auth(req,res,next){
     if(req.session.username)
-    res.sendFile(path.join(__dirname,"./public/dashboard.html"))
-else
-res.redirect("/login");
-})
-app.get("/login", (req,res)=>{
-    if(req.session.username)
-        res.redirect("/dashboard");
+        next();
     else
     res.sendFile(path.join(__dirname,"./public/index.html"))
+}
 
+function authori(req,res,next){
+    if(req.session.username && req.session.role=="admin")
+    next();
+    else
+    res.redirect("/dashboard");
+}
+
+app.get("/login", auth,(req,res)=>{
+        res.redirect("/dashboard");
 })
+
 app.post("/login" , (req,res)=>{
     let details = JSON.parse(fs.readFileSync("./public/userCred.json", "utf-8"));
    // console.log(Array.isArray(details));
@@ -39,10 +45,22 @@ app.post("/login" , (req,res)=>{
     let records = details.filter((v)=>(v.uname == req.body.uname && v.pass == req.body.pass));
      if(records.length>0){
         req.session.username = req.body.uname;
+        req.session.role= records[0].role;
         res.redirect("/dashboard");
      }
     else
     res.redirect("/login");
+})
+
+//app.use(auth);  // puri ki puri file pe lagane ke liye
+
+app.get("/dashboard", auth,(req,res)=>{
+    res.sendFile(path.join(__dirname,"./public/dashboard.html"))
+})
+
+app.get("/admin", authori,(req,res)=>{
+        res.sendFile(path.join(__dirname,"./public/admin.html"))
+
 })
 
 app.get("/logout" , (req,res)=>{
