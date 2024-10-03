@@ -71,19 +71,32 @@ app.get("/logout",(req,res)=>{
 
 app.post("/signup", (req, res) => {
     const { uname, pass } = req.body;
-    const newUser = {
-        uname: uname,
-        pass: pass,
-        role: "user"
-    };
 
-    dbInstance.collection("users").insertOne(newUser)
-    .then(() => {
-        console.log("User added:", newUser);
-        res.redirect("/login");
+    dbInstance.collection("users").findOne({ uname: uname })
+    .then(existingUser => {
+        if (existingUser) {
+
+            res.send(`<script>alert("User already exists!"); window.location.href="/signup";</script>`);
+        } else {
+            const newUser = {
+                uname: uname,
+                pass: pass,
+                role: "user"
+            };
+
+            dbInstance.collection("users").insertOne(newUser)
+            .then(() => {
+                console.log("User added:", newUser);
+                res.redirect("/login");
+            })
+            .catch(err => {
+                console.error("Error adding user:", err);
+                res.status(500).send("Internal Server Error");
+            });
+        }
     })
     .catch(err => {
-        console.error("Error adding user:", err);
+        console.error("Error checking for existing user:", err);
         res.status(500).send("Internal Server Error");
     });
 });
