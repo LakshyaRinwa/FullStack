@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <script>
+        // Function to delete a user
+        function deleteUser(userId) {
+            fetch(`/deleteUser/${userId}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // If deletion is successful, remove the row from the table
+                    document.getElementById(`user-${userId}`).remove();
+                } else {
+                    alert('Failed to delete user');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <table id="data" border="=1">
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Remove</th>
+        </tr>
+        <% users.forEach(function(user) { %>
+        <tr id="user-<%= user._id %>">
+            <td><%= user._id %></td>
+            <td><%= user.uname %></td>
+            <td><%= user.pass %></td>
+            <td><%= user.role %></td>
+            <td><button onclick="deleteUser('<%= user._id %>')">Remove</button></td>
+        </tr>
+        <% }); %>
+    </table>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</body>
+</html>
