@@ -32,6 +32,7 @@
             <th>Password</th>
             <th>Role</th>
             <th>Remove</th>
+            <th>Update</th>
         </tr>
         <% users.forEach(function(user) { %>
         <tr id="user-<%= user._id %>">
@@ -40,6 +41,8 @@
             <td><%= user.pass %></td>
             <td><%= user.role %></td>
             <td><button onclick="deleteUser('<%= user._id %>')">Remove</button></td>
+            <td><button onclick="window.location.href='/updateUser/<%= user._id %>'">Update</button></td>
+
         </tr>
         <% }); %>
     </table>

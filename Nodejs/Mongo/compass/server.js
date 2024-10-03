@@ -145,6 +145,46 @@ app.delete("/deleteUser/:id", (req, res) => {
     });
 });
 
+app.get("/updateUser/:id", (req, res) => {
+    const userId = req.params.id;
+
+    dbInstance.collection("users").findOne({ _id: new ObjectId(userId) })
+    .then(user => {
+        if (user) {
+            res.render("updateUser", { user: user });
+        } else {
+            res.status(404).send("User not found");
+        }
+    })
+    .catch(err => {
+        console.error("Error fetching user for update:", err);
+        res.status(500).send("Internal Server Error");
+    });
+});
+
+app.post("/updateUser/:id", (req, res) => {
+    const userId = req.params.id;
+    const { uname, pass, role } = req.body;
+
+    dbInstance.collection("users").updateOne(
+        { _id: new ObjectId(userId) },
+        { $set: { uname: uname, pass: pass, role: role } }
+    )
+    .then(result => {
+        if (result.modifiedCount > 0) {
+            console.log("User updated:", { userId, uname, pass, role });
+            res.redirect("/admin");
+        } else {
+            res.status(404).send("User not found or no changes made");
+        }
+    })
+    .catch(err => {
+        console.error("Error updating user:", err);
+        res.status(500).send("Internal Server Error");
+    });
+});
+
+
 app.listen(3000, () => {
     console.log("Server is listening at port 3000");
 });
