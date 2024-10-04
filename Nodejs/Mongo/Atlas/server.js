@@ -30,7 +30,6 @@ MongoClient.connect("mongodb+srv://lakshya5030:Lakshya123@cluster0.alnl9lx.mongo
         console.error("Failed to connect to MongoDB", err);
     });
 
-// Routes
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
@@ -52,7 +51,7 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-    if (req.session.username === "admin") {
+    if (req.session.role === "admin") {
         dbInstance.collection("users").find({}).toArray()
             .then(users => {
                 res.render("admin", { users: users });
@@ -71,7 +70,6 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
-// Signup route
 app.post("/signup", (req, res) => {
     const { uname, pass } = req.body;
 
@@ -105,6 +103,7 @@ app.post("/login", (req, res) => {
         .then(user => {
             if (user) {
                 req.session.username = uname;
+                req.session.role = user.role;
                 res.redirect("/dashboard");
             } else {
                 res.send(`<script>alert("Invalid credentials!"); window.location.href="/login";</script>`);
