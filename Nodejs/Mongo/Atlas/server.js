@@ -65,6 +65,24 @@ app.get("/admin", (req, res) => {
     }
 });
 
+
+// it is used to display only the uname and role from all queries
+// app.get("/admin", (req, res) => {
+//     if (req.session.role === "admin") {
+//         dbInstance.collection("users").find({}, { projection: { uname: 1, role: 1 } }).toArray()
+//             .then(users => {
+//                 res.render("admin", { users: users });
+//             })
+//             .catch(err => {
+//                 console.error("Error fetching users:", err);
+//                 res.status(500).send("Internal Server Error");
+//             });
+//     } else {
+//         res.redirect("/dashboard");
+//     }
+// });
+
+
 app.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/login");
@@ -101,6 +119,7 @@ app.post("/login", (req, res) => {
 
     dbInstance.collection("users").findOne({ uname, pass })
         .then(user => {
+            console.log(user);
             if (user) {
                 req.session.username = uname;
                 req.session.role = user.role;
